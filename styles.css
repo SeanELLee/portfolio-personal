@@ -1,0 +1,1656 @@
+/* Base Styles and Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Display', sans-serif;
+    font-weight: 300;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    background-color: #1a1a1a;
+    overflow-x: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    height: 100%;
+    overflow-y: auto;
+}
+
+body.loading-complete {
+    opacity: 1;
+}
+
+/* Loading Progress */
+.loading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #FFD700;
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
+
+/* Reading Progress */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #FFD700;
+    z-index: 1001;
+    transition: width 0.1s;
+}
+
+/* Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #FFD700;
+    color: #1a1a1a;
+    padding: 8px;
+    z-index: 1001;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5);
+    border-radius: 4px;
+}
+
+/* Enhanced Background Effects */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./asset/bg_pic.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.7)
+    );
+    z-index: -1;
+}
+
+/* Layout Components */
+section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    padding: 6rem 1rem;
+    min-height: 100vh;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem;
+    height: 100%;
+}
+
+/* Enhanced Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    height: 60px;
+    background: rgba(26, 26, 26, 0.95);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 24px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.social-links a {
+    color: white;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    color: #FFD700;
+    transform: translateY(-2px);
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+}
+
+/* Hero Section */
+#home {
+    display: flex;
+    align-items: center;
+    color: white;
+    min-height: 100vh;
+}
+
+.hero-content {
+    text-align: center;
+    animation: heroFadeIn 1s ease;
+    position: relative;
+}
+
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content p {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* About Section */
+#about {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 345px;
+    gap: 4rem;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 400;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+    letter-spacing: -0.02em;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #FFD700;
+}
+
+.about-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0rem;
+}
+
+/* Experience Tabs */
+.experience-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 0rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #FFD700 rgba(255, 255, 255, 0.1);
+}
+
+.experience-header::-webkit-scrollbar {
+    height: 4px;
+}
+
+.experience-header::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.experience-header::-webkit-scrollbar-thumb {
+    background-color: #FFD700;
+    border-radius: 2px;
+}
+
+.header-item {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 0.25rem 0;
+    white-space: nowrap;
+}
+
+.header-item:hover {
+    color: #FFD700;
+}
+
+.header-item::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #FFD700;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.header-item:hover::after {
+    width: 100%;
+}
+
+.header-item.active {
+    color: #FFD700;
+}
+
+.header-item.active::after {
+    width: 100%;
+    transition: none;
+}
+
+/* Tab Content */
+.tab-content {
+    position: relative;
+    min-height: 300px;
+    overflow: visible;
+    margin-top: 1.5rem;
+}
+
+.tab-content > div {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-top: 0rem;
+}
+
+.tab-content > div.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Experience Items */
+.experience-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 3px solid transparent;
+    transform-origin: center center;
+}
+
+.experience-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Experience Details */
+.experience-details {
+    flex: 1;
+}
+
+.experience-details h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+}
+
+.experience-details h3.position {
+    color: #FFD700;
+}
+
+.experience-details p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Experience Location */
+.experience-location {
+    text-align: right;
+    min-width: 140px;
+    margin-left: 1rem;
+}
+
+.experience-location .date {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.experience-location p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Profile Picture */
+.profile-picture-container {
+    width: 345px;
+    height: 460px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.profile-picture-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+.profile-picture-container:hover .profile-image {
+    transform: scale(1.05);
+}
+
+/* Portfolio Section - Updated for Notion Integration */
+#portfolio {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.portfolio-container {
+    width: 100%;
+}
+
+.portfolio-header {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+/* Notion Embed Styles */
+.notion-embed-container {
+    width: 100%;
+    height: 800px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.notion-embed-container:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.notion-embed-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    background: white;
+}
+
+/* Portfolio Modal Styles */
+.portfolio-modal {
+    display: block;
+    position: relative;
+    z-index: auto;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    backdrop-filter: none;
+    animation: none;
+}
+
+.modal-content {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 650px; /* Reduced from 800px */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.modal-content:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.modal-close {
+    display: none; /* Hide close button since it's not a modal anymore */
+}
+
+.modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    background: white;
+    pointer-events: auto;
+    overflow: hidden;
+    opacity: 0.95; /* 70% transparent (30% visible) */
+}
+
+/* Legacy Portfolio Styles (keeping for backward compatibility) */
+.portfolio-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: #FFD700;
+    color: #1a1a1a;
+    border-color: #FFD700;
+}
+
+.portfolio-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    overflow: hidden;
+}
+
+.portfolio-gallery-container {
+    position: relative;
+    width: 100%;
+    padding: 0 2rem;
+    margin: 2rem 0;
+    overflow: hidden;
+}
+
+.portfolio-item {
+    display: none;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 3/2;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.portfolio-item.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio-item[style*="display: block"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio-item.visible {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.portfolio-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.portfolio-nav-btn:hover {
+    opacity: 1;
+    background: rgba(255, 215, 0, 0.2);
+}
+
+.portfolio-nav-btn.prev {
+    left: 0;
+}
+
+.portfolio-nav-btn.next {
+    right: 0;
+}
+
+.portfolio-nav-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.portfolio-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.portfolio-item:hover .portfolio-image img {
+    transform: scale(1.1);
+}
+
+.portfolio-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 215, 0, 0.1),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(255, 215, 0, 0.1);
+    z-index: 1;
+}
+
+.portfolio-item:hover::before,
+.portfolio-item:hover::after {
+    opacity: 1;
+}
+
+.portfolio-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 215, 0, 0.2);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #FFD700;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.8) 50%,
+        transparent 100%
+    );
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-content {
+    transform: translateY(0);
+}
+
+.portfolio-content h3 {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.portfolio-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.portfolio-link {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    padding: 0.25rem 0;
+}
+
+.portfolio-link::before {
+    content: '→';
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+}
+
+.portfolio-link:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+.portfolio-link:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.portfolio-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    border-color: #FFD700;
+    color: #FFD700;
+}
+
+.filter-btn.active {
+    background: #FFD700;
+    color: #1a1a1a;
+    border-color: #FFD700;
+}
+
+/* Contact Section */
+
+/* Contact Section - Professional Redesign */
+#contact {
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 5rem 1rem; /* Reduced padding for better proportion */
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 1000px; /* Constrain max width for better readability */
+    margin: 0 auto;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.contact-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
+    font-weight: 300;
+}
+
+.contact-content {
+    width: 100%;
+}
+
+.contact-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+.contact-content {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    transition: all 0.3s ease;
+}
+
+/* Contact Info Styling */
+.contact-info {
+    width: 100%;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.contact-item:hover::before {
+    left: 100%;
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+    color: #FFD700;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+.contact-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.contact-details a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.contact-details a:hover {
+    color: #FFD700;
+}
+
+.contact-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+}
+
+.contact-links a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-links a::before {
+    content: '→';
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+}
+
+.contact-links a:hover {
+    color: white;
+    transform: translateX(10px);
+}
+
+.contact-links a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Resume Section Styling */
+.resume-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: fit-content;
+}
+
+.resume-title {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.resume-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.resume-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.resume-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.resume-btn.primary {
+    background: linear-gradient(135deg, #FFD700, #FFC700);
+    color: #1a1a1a;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.resume-btn.primary:hover {
+    background: linear-gradient(135deg, #FFC700, #FFB700);
+    color: #1a1a1a; /* Keep dark text for primary button */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.resume-btn.secondary {
+    background: transparent;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+}
+
+.resume-btn.secondary:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: white; /* White text on hover for secondary button */
+    border-color: #FFD700;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+}
+
+/* Ensure SVG icons also change color on hover */
+.resume-btn.secondary:hover svg {
+    color: white;
+    stroke: white;
+}
+
+.resume-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.resume-btn:hover svg {
+    transform: translateY(2px);
+}
+
+.resume-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 215, 0, 0.2);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.resume-btn:hover {
+    background: #FFD700;
+    color: #1a1a1a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.resume-btn:hover::before {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+/* Footer */
+.footer {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 2rem 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-credit {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    transition: color 0.3s ease;
+}
+
+.footer-credit:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .modal-content {
+        height: 450px; /* Reduced from 600px */
+        margin-top: 1rem;
+    }
+    .profile-picture {
+        display: none;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .portfolio-gallery {
+        display: none;
+    }
+    
+    .portfolio-mobile-list {
+        display: block;
+    }
+    
+    .portfolio-mobile-item {
+        margin-bottom: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .portfolio-mobile-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .portfolio-mobile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .portfolio-mobile-content {
+        padding: 1.5rem;
+    }
+    
+    .portfolio-mobile-content h3 {
+        color: #FFD700;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+    }
+    
+    .portfolio-mobile-content p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 1rem;
+    }
+    
+    .portfolio-filters {
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-btn {
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive Notion embed */
+    .notion-embed-container,
+    .modal-content {
+        height: 600px;
+        margin-top: 1rem;
+    }
+
+    .contact-main {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .resume-section {
+        order: -1; /* Move resume section to top on mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        height: 400px; /* Reduced from 500px */
+        border-radius: 8px;
+    }
+
+    .portfolio-gallery {
+        grid-template-columns: 1fr;
+        max-height: none;
+    }
+
+    .portfolio-gallery-container {
+        padding: 0;
+    }
+
+    .portfolio-item {
+        height: 200px;
+    }
+
+    .portfolio-content {
+        transform: translateY(0);
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+    
+    .social-links svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .experience-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .experience-location {
+        text-align: left;
+        margin-left: 0;
+        min-width: auto;
+    }
+
+    .contact-content {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .contact-links a {
+        font-size: 1rem;
+        padding: 10px 0;
+    }
+
+    .resume-btn {
+        padding: 0.875rem 1.5rem;
+    }
+
+    /* Mobile Notion embed */
+    .notion-embed-container,
+    .modal-content {
+        height: 500px;
+        border-radius: 8px;
+    }
+
+    #contact {
+        padding: 3rem 1rem;
+    }
+    
+    .contact-header {
+        margin-bottom: 3rem;
+    }
+    
+    .contact-main {
+        gap: 2rem;
+    }
+
+    .contact-item {
+        padding: 0.875rem;
+    }
+    
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .resume-section {
+        padding: 1.5rem;
+    }
+    
+    .resume-buttons {
+        gap: 0.75rem;
+    }
+    
+    .resume-btn {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        height: 400px; /* Reduced from 400px */
+        border-radius: 6px;
+        margin-top: 0.5rem;
+    }
+
+    .portfolio-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .profile-picture-container {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+    .notion-embed-container,
+    .modal-content {
+        height: 400px;
+        border-radius: 6px;
+        margin-top: 0.5rem;
+    }
+    #contact {
+        padding: 2rem 1rem;
+    }
+    
+    .contact-header {
+        margin-bottom: 2rem;
+    }
+    
+    .contact-subtitle {
+        font-size: 1rem;
+    }
+    
+    .contact-main {
+        gap: 1.5rem;
+    }
+    
+    .contact-item {
+        padding: 0.75rem;
+        gap: 0.75rem;
+    }
+    
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .contact-details a {
+        font-size: 0.9rem;
+    }
+    
+    .resume-section {
+        padding: 1.25rem;
+    }
+    
+    .resume-title {
+        font-size: 1.1rem;
+    }
+    
+    .resume-description {
+        font-size: 0.9rem;
+    }
+    
+    .resume-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        gap: 0.5rem;
+    }
+    
+    .resume-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Enhanced Animations */
+@keyframes contactFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-item {
+    animation: contactFadeIn 0.6s ease forwards;
+}
+
+.contact-item:nth-child(1) { animation-delay: 0.1s; }
+.contact-item:nth-child(2) { animation-delay: 0.2s; }
+.contact-item:nth-child(3) { animation-delay: 0.3s; }
+.contact-item:nth-child(4) { animation-delay: 0.4s; }
+
+.resume-section {
+    animation: contactFadeIn 0.6s ease 0.5s forwards;
+    opacity: 0;
+}
+
+/* Focus States for Accessibility */
+.contact-item:focus-within {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+.resume-btn:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .contact-item {
+        border: 2px solid white;
+        background: black;
+    }
+    
+    .contact-icon {
+        background: #FFD700;
+        color: black;
+    }
+    
+    .resume-section {
+        border: 2px solid white;
+        background: black;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .contact-item,
+    .resume-section {
+        animation: none;
+        opacity: 1;
+    }
+    
+    .contact-item::before {
+        display: none;
+    }
+    
+    .contact-item:hover,
+    .resume-btn:hover {
+        transform: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    nav, 
+    .mobile-menu-btn, 
+    .portfolio-item::before,
+    .notion-embed-container,
+    .portfolio-modal {
+        display: none;
+    }
+    
+    body {
+        background: none;
+        color: #000;
+    }
+    
+    body::before, 
+    body::after {
+        display: none;
+    }
+    
+    .experience-item, 
+    .contact-content {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    .section-title::after {
+        background: #000;
+    }
+
+    /* Print-friendly portfolio section */
+    #portfolio::after {
+        content: "Portfolio available online at: [your-website-url]";
+        display: block;
+        margin-top: 2rem;
+        font-style: italic;
+        color: #666;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .notion-embed-container,
+    .modal-content {
+        transition: none;
+        transform: none;
+    }
+
+    .notion-embed-container:hover,
+    .modal-content:hover {
+        transform: none;
+    }
+}
+
+/* Loading states for Notion embed */
+.notion-embed-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid rgba(255, 215, 0, 0.3);
+    border-top: 3px solid #FFD700;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+.notion-embed-container iframe {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.notion-embed-container iframe[src] {
+    opacity: 1;
+}
+
+.notion-embed-container iframe[src] ~ ::before {
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error handling for failed Notion embeds */
+.notion-embed-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 2rem;
+}
+
+.notion-embed-error svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.notion-embed-error h3 {
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.notion-embed-error p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.notion-embed-error a {
+    color: #FFD700;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid #FFD700;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.notion-embed-error a:hover {
+    background: #FFD700;
+    color: #1a1a1a;
+}
+
+/* Accessibility improvements for Notion embed */
+.notion-embed-container[aria-label] {
+    position: relative;
+}
+
+.notion-embed-container iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: white;
+}
+
+
+/* Focus management for embedded content */
+.notion-embed-container:focus-within {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .notion-embed-container {
+        border: 2px solid white;
+        background: black;
+    }
+    
+    .modal-content {
+        border: 2px solid white;
+        background: black;
+    }
+}
+
+/* Dark mode specific adjustments (if needed) */
+@media (prefers-color-scheme: dark) {
+    .notion-embed-container {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.05);
+    }
+}
