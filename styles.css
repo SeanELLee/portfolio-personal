@@ -286,7 +286,6 @@ nav.scrolled {
     line-height: 1.8;
     margin-bottom: 3rem;
     color: rgba(255, 255, 255, 0.9);
-    margin-top: 0rem;
 }
 
 /* Experience Tabs */
@@ -370,7 +369,6 @@ nav.scrolled {
     visibility: hidden;
     transform: translateX(-100%);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding-top: 0rem;
 }
 
 .tab-content > div.active {
@@ -468,7 +466,7 @@ nav.scrolled {
     transform: scale(1.05);
 }
 
-/* Portfolio Section - Updated for Notion Integration */
+/* Portfolio Section */
 #portfolio {
     color: white;
     display: flex;
@@ -484,51 +482,19 @@ nav.scrolled {
     margin-bottom: 1rem;
 }
 
-/* Notion Embed Styles */
-.notion-embed-container {
-    width: 100%;
-    height: 800px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.05);
-    margin-top: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.notion-embed-container:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    transform: translateY(-5px);
-}
-
-.notion-embed-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 12px;
-    background: white;
-}
-
 /* Portfolio Modal Styles */
 .portfolio-modal {
     display: block;
     position: relative;
-    z-index: auto;
-    left: auto;
-    top: auto;
     width: 100%;
     height: auto;
-    background-color: transparent;
-    backdrop-filter: none;
-    animation: none;
 }
 
 .modal-content {
     position: relative;
     margin: 0;
     width: 100%;
-    height: 650px; /* Reduced from 800px */
+    height: 650px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     overflow: hidden;
@@ -542,292 +508,26 @@ nav.scrolled {
     transform: translateY(-5px);
 }
 
-.modal-close {
-    display: none; /* Hide close button since it's not a modal anymore */
-}
-
 .modal-content iframe {
     width: 100%;
     height: 100%;
     border: none;
     border-radius: 12px;
     background: white;
-    pointer-events: auto;
-    overflow: hidden;
-    opacity: 0.95; /* 70% transparent (30% visible) */
-}
-
-/* Legacy Portfolio Styles (keeping for backward compatibility) */
-.portfolio-filters {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 4px;
-    color: white;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.filter-btn.active {
-    background: #FFD700;
-    color: #1a1a1a;
-    border-color: #FFD700;
-}
-
-.portfolio-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    overflow: hidden;
-}
-
-.portfolio-gallery-container {
-    position: relative;
-    width: 100%;
-    padding: 0 2rem;
-    margin: 2rem 0;
-    overflow: hidden;
-}
-
-.portfolio-item {
-    display: none;
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    aspect-ratio: 3/2;
-    background: rgba(255, 255, 255, 0.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.portfolio-item.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.portfolio-item[style*="display: block"] {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.portfolio-item.visible {
-    position: relative;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-.portfolio-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-}
-
-.portfolio-nav-btn:hover {
-    opacity: 1;
-    background: rgba(255, 215, 0, 0.2);
-}
-
-.portfolio-nav-btn.prev {
-    left: 0;
-}
-
-.portfolio-nav-btn.next {
-    right: 0;
-}
-
-.portfolio-nav-btn.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.portfolio-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.portfolio-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.portfolio-item:hover .portfolio-image img {
-    transform: scale(1.1);
-}
-
-.portfolio-item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.portfolio-item::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        45deg,
-        rgba(255, 215, 0, 0.1),
-        transparent
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.portfolio-item:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2),
-                0 0 20px rgba(255, 215, 0, 0.1);
-    z-index: 1;
-}
-
-.portfolio-item:hover::before,
-.portfolio-item:hover::after {
-    opacity: 1;
-}
-
-.portfolio-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: rgba(255, 215, 0, 0.2);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 20px;
-    font-size: 0.75rem;
-    color: #FFD700;
-    margin-bottom: 0.5rem;
-}
-
-.portfolio-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.95) 0%,
-        rgba(0, 0, 0, 0.8) 50%,
-        transparent 100%
-    );
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.portfolio-item:hover .portfolio-content {
-    transform: translateY(0);
-}
-
-.portfolio-content h3 {
-    color: white;
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-}
-
-.portfolio-content p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-}
-
-.portfolio-link {
-    color: #FFD700;
-    text-decoration: none;
-    font-size: 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    padding: 0.25rem 0;
-}
-
-.portfolio-link::before {
-    content: '→';
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: all 0.3s ease;
-}
-
-.portfolio-link:hover {
-    color: white;
-    transform: translateX(5px);
-}
-
-.portfolio-link:hover::before {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.portfolio-filters {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.filter-btn {
-    padding: 0.75rem 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 30px;
-    color: white;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.filter-btn:hover {
-    border-color: #FFD700;
-    color: #FFD700;
-}
-
-.filter-btn.active {
-    background: #FFD700;
-    color: #1a1a1a;
-    border-color: #FFD700;
+    opacity: 0.95;
 }
 
 /* Contact Section */
-
-/* Contact Section - Professional Redesign */
 #contact {
     color: white;
     display: flex;
     align-items: center;
-    padding: 5rem 1rem; /* Reduced padding for better proportion */
+    padding: 5rem 1rem;
 }
 
 .contact-container {
     width: 100%;
-    max-width: 1000px; /* Constrain max width for better readability */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -852,15 +552,6 @@ nav.scrolled {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: start;
-}
-.contact-content {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 4rem;
-    transition: all 0.3s ease;
 }
 
 /* Contact Info Styling */
@@ -934,19 +625,6 @@ nav.scrolled {
     gap: 0.25rem;
 }
 
-.contact-details a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.contact-details a:hover {
-    color: #FFD700;
-}
-
 .contact-label {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.6);
@@ -955,32 +633,16 @@ nav.scrolled {
     font-weight: 400;
 }
 
-.contact-links a {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #FFD700;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.contact-links a::before {
-    content: '→';
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: all 0.3s ease;
-}
-
-.contact-links a:hover {
+.contact-details a {
     color: white;
-    transform: translateX(10px);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
 }
 
-.contact-links a:hover::before {
-    opacity: 1;
-    transform: translateX(0);
+.contact-details a:hover {
+    color: #FFD700;
 }
 
 /* Resume Section Styling */
@@ -1041,7 +703,7 @@ nav.scrolled {
 
 .resume-btn.primary:hover {
     background: linear-gradient(135deg, #FFC700, #FFB700);
-    color: #1a1a1a; /* Keep dark text for primary button */
+    color: #1a1a1a;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
 }
@@ -1054,13 +716,12 @@ nav.scrolled {
 
 .resume-btn.secondary:hover {
     background: rgba(255, 215, 0, 0.1);
-    color: white; /* White text on hover for secondary button */
+    color: white;
     border-color: #FFD700;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
 }
 
-/* Ensure SVG icons also change color on hover */
 .resume-btn.secondary:hover svg {
     color: white;
     stroke: white;
@@ -1074,30 +735,6 @@ nav.scrolled {
     transform: translateY(2px);
 }
 
-.resume-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 215, 0, 0.2);
-    transform: translate(-50%, -50%) scale(0);
-    border-radius: 50%;
-    transition: transform 0.5s ease;
-}
-
-.resume-btn:hover {
-    background: #FFD700;
-    color: #1a1a1a;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-}
-
-.resume-btn:hover::before {
-    transform: translate(-50%, -50%) scale(2);
-}
-
 /* Footer */
 .footer {
     background: rgba(26, 26, 26, 0.8);
@@ -1107,24 +744,39 @@ nav.scrolled {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.footer-credit {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
-    font-style: italic;
-    transition: color 0.3s ease;
+/* Enhanced Animations */
+@keyframes contactFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.footer-credit:hover {
-    color: rgba(255, 255, 255, 0.7);
+.contact-item {
+    animation: contactFadeIn 0.6s ease forwards;
+}
+
+.contact-item:nth-child(1) { animation-delay: 0.1s; }
+.contact-item:nth-child(2) { animation-delay: 0.2s; }
+.contact-item:nth-child(3) { animation-delay: 0.3s; }
+.contact-item:nth-child(4) { animation-delay: 0.4s; }
+
+.resume-section {
+    animation: contactFadeIn 0.6s ease 0.5s forwards;
+    opacity: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
     .modal-content {
-        height: 450px; /* Reduced from 600px */
+        height: 450px;
         margin-top: 1rem;
     }
+    
     .profile-picture {
         display: none;
     }
@@ -1138,102 +790,20 @@ nav.scrolled {
         padding: 0 1rem;
     }
 
-    .portfolio-gallery {
-        display: none;
-    }
-    
-    .portfolio-mobile-list {
-        display: block;
-    }
-    
-    .portfolio-mobile-item {
-        margin-bottom: 2rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        overflow: hidden;
-    }
-    
-    .portfolio-mobile-image {
-        width: 100%;
-        height: 200px;
-    }
-    
-    .portfolio-mobile-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .portfolio-mobile-content {
-        padding: 1.5rem;
-    }
-    
-    .portfolio-mobile-content h3 {
-        color: #FFD700;
-        margin-bottom: 0.5rem;
-        font-size: 1.2rem;
-    }
-    
-    .portfolio-mobile-content p {
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 1rem;
-    }
-    
-    .portfolio-filters {
-        overflow-x: auto;
-        padding-bottom: 1rem;
-        margin-bottom: 1.5rem;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .filter-btn {
-        white-space: nowrap;
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    /* Responsive Notion embed */
-    .notion-embed-container,
-    .modal-content {
-        height: 600px;
-        margin-top: 1rem;
-    }
-
     .contact-main {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
     
     .resume-section {
-        order: -1; /* Move resume section to top on mobile */
+        order: -1;
     }
 }
 
 @media (max-width: 768px) {
     .modal-content {
-        height: 400px; /* Reduced from 500px */
+        height: 400px;
         border-radius: 8px;
-    }
-
-    .portfolio-gallery {
-        grid-template-columns: 1fr;
-        max-height: none;
-    }
-
-    .portfolio-gallery-container {
-        padding: 0;
-    }
-
-    .portfolio-item {
-        height: 200px;
-    }
-
-    .portfolio-content {
-        transform: translateY(0);
-    }
-
-    .mobile-menu-btn {
-        display: flex;
     }
 
     .social-links {
@@ -1254,27 +824,6 @@ nav.scrolled {
         text-align: left;
         margin-left: 0;
         min-width: auto;
-    }
-
-    .contact-content {
-        flex-direction: column;
-        gap: 3rem;
-    }
-
-    .contact-links a {
-        font-size: 1rem;
-        padding: 10px 0;
-    }
-
-    .resume-btn {
-        padding: 0.875rem 1.5rem;
-    }
-
-    /* Mobile Notion embed */
-    .notion-embed-container,
-    .modal-content {
-        height: 500px;
-        border-radius: 8px;
     }
 
     #contact {
@@ -1314,13 +863,9 @@ nav.scrolled {
 
 @media (max-width: 480px) {
     .modal-content {
-        height: 400px; /* Reduced from 400px */
+        height: 400px;
         border-radius: 6px;
         margin-top: 0.5rem;
-    }
-
-    .portfolio-gallery {
-        grid-template-columns: 1fr;
     }
 
     .hero-content h1 {
@@ -1336,12 +881,7 @@ nav.scrolled {
         height: auto;
         aspect-ratio: 3/4;
     }
-    .notion-embed-container,
-    .modal-content {
-        height: 400px;
-        border-radius: 6px;
-        margin-top: 0.5rem;
-    }
+
     #contact {
         padding: 2rem 1rem;
     }
@@ -1394,32 +934,7 @@ nav.scrolled {
         width: 16px;
         height: 16px;
     }
-}
 
-/* Enhanced Animations */
-@keyframes contactFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.contact-item {
-    animation: contactFadeIn 0.6s ease forwards;
-}
-
-.contact-item:nth-child(1) { animation-delay: 0.1s; }
-.contact-item:nth-child(2) { animation-delay: 0.2s; }
-.contact-item:nth-child(3) { animation-delay: 0.3s; }
-.contact-item:nth-child(4) { animation-delay: 0.4s; }
-
-.resume-section {
-    animation: contactFadeIn 0.6s ease 0.5s forwards;
-    opacity: 0;
 }
 
 /* Focus States for Accessibility */
@@ -1449,10 +964,24 @@ nav.scrolled {
         border: 2px solid white;
         background: black;
     }
+    
+    .modal-content {
+        border: 2px solid white;
+        background: black;
+    }
 }
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
     .contact-item,
     .resume-section {
         animation: none;
@@ -1467,14 +996,20 @@ nav.scrolled {
     .resume-btn:hover {
         transform: none;
     }
+
+    .modal-content {
+        transition: none;
+        transform: none;
+    }
+
+    .modal-content:hover {
+        transform: none;
+    }
 }
 
 /* Print Styles */
 @media print {
     nav, 
-    .mobile-menu-btn, 
-    .portfolio-item::before,
-    .notion-embed-container,
     .portfolio-modal {
         display: none;
     }
@@ -1504,153 +1039,11 @@ nav.scrolled {
         background: #000;
     }
 
-    /* Print-friendly portfolio section */
     #portfolio::after {
         content: "Portfolio available online at: [your-website-url]";
         display: block;
         margin-top: 2rem;
         font-style: italic;
         color: #666;
-    }
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-
-    .notion-embed-container,
-    .modal-content {
-        transition: none;
-        transform: none;
-    }
-
-    .notion-embed-container:hover,
-    .modal-content:hover {
-        transform: none;
-    }
-}
-
-/* Loading states for Notion embed */
-.notion-embed-container::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    margin: -20px 0 0 -20px;
-    border: 3px solid rgba(255, 215, 0, 0.3);
-    border-top: 3px solid #FFD700;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    z-index: 1;
-}
-
-.notion-embed-container iframe {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.notion-embed-container iframe[src] {
-    opacity: 1;
-}
-
-.notion-embed-container iframe[src] ~ ::before {
-    display: none;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Error handling for failed Notion embeds */
-.notion-embed-error {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: rgba(255, 255, 255, 0.7);
-    text-align: center;
-    padding: 2rem;
-}
-
-.notion-embed-error svg {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 1rem;
-    opacity: 0.5;
-}
-
-.notion-embed-error h3 {
-    margin-bottom: 0.5rem;
-    color: white;
-}
-
-.notion-embed-error p {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-}
-
-.notion-embed-error a {
-    color: #FFD700;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid #FFD700;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.notion-embed-error a:hover {
-    background: #FFD700;
-    color: #1a1a1a;
-}
-
-/* Accessibility improvements for Notion embed */
-.notion-embed-container[aria-label] {
-    position: relative;
-}
-
-.notion-embed-container iframe {
-    border: none;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    background: white;
-}
-
-
-/* Focus management for embedded content */
-.notion-embed-container:focus-within {
-    outline: 2px solid #FFD700;
-    outline-offset: 2px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    .notion-embed-container {
-        border: 2px solid white;
-        background: black;
-    }
-    
-    .modal-content {
-        border: 2px solid white;
-        background: black;
-    }
-}
-
-/* Dark mode specific adjustments (if needed) */
-@media (prefers-color-scheme: dark) {
-    .notion-embed-container {
-        background: rgba(255, 255, 255, 0.02);
-        border-color: rgba(255, 255, 255, 0.05);
     }
 }
